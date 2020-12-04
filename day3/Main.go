@@ -63,11 +63,13 @@ func countTrees(treeMap []string, rightDelta int, downDelta int) int {
 
 func main() {
 
-	path := pathToFile("src/github.com/Ahmad-Ibra/advent-of-code-2020/day3/input.txt")
+	path := pathToFile("input.txt")
 
 	lines, err := readLines(path)
 	check(err)
 
-	fmt.Println(countTrees(lines, 1, 1) * countTrees(lines, 3, 1) * countTrees(lines, 5, 1) * countTrees(lines, 7, 1) * countTrees(lines, 1, 2))
+	fmt.Println("Part 1: ", countTrees(lines, 3, 1))
+
+	fmt.Println("Part 2: ", countTrees(lines, 1, 1)*countTrees(lines, 3, 1)*countTrees(lines, 5, 1)*countTrees(lines, 7, 1)*countTrees(lines, 1, 2))
 
 }
