@@ -71,7 +71,7 @@ func twoSum(lines []string) {
 
 func main() {
 
-	path := pathToFile("src/github.com/Ahmad-Ibra/advent-of-code-2020/day1/input.txt")
+	path := pathToFile("input.txt")
 
 	lines, err := readLines(path)
 	check(err)

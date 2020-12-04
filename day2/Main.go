@@ -110,7 +110,7 @@ func checkValidityPart2(line string) int {
 
 func main() {
 
-	path := pathToFile("src/github.com/Ahmad-Ibra/advent-of-code-2020/day2/input.txt")
+	path := pathToFile("input.txt")
 
 	lines, err := readLines(path)
 	check(err)
