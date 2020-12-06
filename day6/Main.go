@@ -1,71 +1,32 @@
 package main
 
 import (
-	"bufio"
 	"fmt"
-	"os"
-	"path/filepath"
 	"strings"
 )
 
-// IO -------------------------------------------
-func check(e error) {
-	if e != nil {
-		panic(e)
-	}
-}
-
-func readLines(path string) ([]string, error) {
-	file, err := os.Open(path)
-	check(err)
-	defer file.Close()
-
-	var lines []string
-	scanner := bufio.NewScanner(file)
-	for scanner.Scan() {
-		lines = append(lines, scanner.Text())
-	}
-	return lines, scanner.Err()
-}
-
-func pathToFile(fName string) string {
-	dir, err := filepath.Abs(filepath.Dir(os.Args[0]))
-	check(err)
-
-	return filepath.Join(dir, fName)
-}
-
-//-----------------------------------------------
-
-func countAnswersP1(lines []string) {
+func countAnswersP1(groupedLines [][]string) {
 
 	// init variables
-	newGroup := true
 	answerCount := 0
 	answers := make(map[string]bool)
 
-	for _, line := range lines {
-		if newGroup {
-			answers = make(map[string]bool)
-			newGroup = false
-		}
+	// for each group
+	for _, group := range groupedLines {
+		answers = make(map[string]bool)
 
-		// split individual characters
-		answer := strings.Split(line, "")
+		// for each line in group
+		for _, line := range group {
+			// split individual characters
+			answer := strings.Split(line, "")
 
-		for _, character := range answer {
-			answers[character] = true
+			// for each answer
+			for _, character := range answer {
+				answers[character] = true
+			}
 		}
-
-		// if end of group
-		if line == "" {
-			newGroup = true
-			answerCount += len(answers)
-		}
+		answerCount += len(answers)
 	}
-
-	// add the last group to the map
-	answerCount += len(answers)
 
 	fmt.Println("P1 sum counts: ", answerCount)
 }
@@ -82,42 +43,33 @@ func genCount(answers map[string]int, size int) int {
 	return count
 }
 
-func countAnswersP2(lines []string) {
+func countAnswersP2(groupedLines [][]string) {
 
 	// init variables
-	newGroup := true
 	answerCount := 0
 	groupSize := 0
 	answers := make(map[string]int)
 
-	for _, line := range lines {
-		if newGroup {
-			answers = make(map[string]int)
-			newGroup = false
-			groupSize = 0
+	// for each group
+	for _, group := range groupedLines {
+		answers = make(map[string]int)
+
+		// for each line in group
+		for i, line := range group {
+			groupSize = i + 1
+
+			// split individual characters
+			answer := strings.Split(line, "")
+
+			// for each answer
+			for _, character := range answer {
+				answers[character] = answers[character] + 1
+			}
 		}
-
-		// split individual characters
-		answer := strings.Split(line, "")
-
-		for _, character := range answer {
-			answers[character] = answers[character] + 1
-		}
-
-		// if end of group
-		if line == "" {
-			newGroup = true
-			answerCount += genCount(answers, groupSize)
-
-		} else {
-			groupSize++
-		}
+		answerCount += genCount(answers, groupSize)
 	}
 
-	// add the last group to the map
-	answerCount += genCount(answers, groupSize)
-
-	fmt.Println("P2 sum counts: ", answerCount)
+	fmt.Println("P2b sum counts: ", answerCount)
 }
 
 func main() {
@@ -127,6 +79,8 @@ func main() {
 	lines, err := readLines(path)
 	check(err)
 
-	countAnswersP1(lines)
-	countAnswersP2(lines)
+	groupedLines := groupLines(lines)
+
+	countAnswersP1(groupedLines)
+	countAnswersP2(groupedLines)
 }
