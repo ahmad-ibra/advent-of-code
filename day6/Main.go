@@ -3,6 +3,9 @@ package main
 import (
 	"fmt"
 	"strings"
+
+	"github.com/Ahmad-Ibra/advent-of-code-2020/input"
+	"github.com/Ahmad-Ibra/advent-of-code-2020/panicer"
 )
 
 func genCount(answers map[string]int, size int) int {
@@ -54,12 +57,12 @@ func countAnswers(groupedLines [][]string) {
 
 func main() {
 
-	path := pathToFile("input.txt")
+	path := input.PathToFile("input.txt")
 
-	lines, err := readLines(path)
-	check(err)
+	lines, err := input.ReadLines(path)
+	panicer.Check(err)
 
-	groupedLines := groupLines(lines)
+	groupedLines := input.GroupLines(lines)
 
 	countAnswers(groupedLines)
 }

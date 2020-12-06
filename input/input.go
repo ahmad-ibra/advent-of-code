@@ -5,13 +5,13 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/Ahmad-Ibra/advent-of-code-2020/errorHandler"
+	"github.com/Ahmad-Ibra/advent-of-code-2020/panicer"
 )
 
 // ReadLines takes a path to a file and returns an array of the lines
 func ReadLines(path string) ([]string, error) {
 	file, err := os.Open(path)
-	errorHandler.Check(err)
+	panicer.Check(err)
 	defer file.Close()
 
 	var lines []string
@@ -25,7 +25,7 @@ func ReadLines(path string) ([]string, error) {
 // PathToFile generates a path to the given filename
 func PathToFile(fName string) string {
 	dir, err := filepath.Abs(filepath.Dir(os.Args[0]))
-	errorHandler.Check(err)
+	panicer.Check(err)
 
 	return filepath.Join(dir, fName)
 }
