@@ -5,32 +5,6 @@ import (
 	"strings"
 )
 
-func countAnswersP1(groupedLines [][]string) {
-
-	// init variables
-	answerCount := 0
-	answers := make(map[string]bool)
-
-	// for each group
-	for _, group := range groupedLines {
-		answers = make(map[string]bool)
-
-		// for each line in group
-		for _, line := range group {
-			// split individual characters
-			answer := strings.Split(line, "")
-
-			// for each answer
-			for _, character := range answer {
-				answers[character] = true
-			}
-		}
-		answerCount += len(answers)
-	}
-
-	fmt.Println("P1 sum counts: ", answerCount)
-}
-
 func genCount(answers map[string]int, size int) int {
 
 	count := 0
@@ -43,16 +17,19 @@ func genCount(answers map[string]int, size int) int {
 	return count
 }
 
-func countAnswersP2(groupedLines [][]string) {
+func countAnswers(groupedLines [][]string) {
 
 	// init variables
-	answerCount := 0
+	answerCountP1 := 0
+	answerCountP2 := 0
+	answersP1 := make(map[string]bool)
+	answersP2 := make(map[string]int)
 	groupSize := 0
-	answers := make(map[string]int)
 
 	// for each group
 	for _, group := range groupedLines {
-		answers = make(map[string]int)
+		answersP1 = make(map[string]bool)
+		answersP2 = make(map[string]int)
 
 		// for each line in group
 		for i, line := range group {
@@ -63,13 +40,16 @@ func countAnswersP2(groupedLines [][]string) {
 
 			// for each answer
 			for _, character := range answer {
-				answers[character] = answers[character] + 1
+				answersP1[character] = true
+				answersP2[character] = answersP2[character] + 1
 			}
 		}
-		answerCount += genCount(answers, groupSize)
+		answerCountP1 += len(answersP1)
+		answerCountP2 += genCount(answersP2, groupSize)
 	}
 
-	fmt.Println("P2b sum counts: ", answerCount)
+	fmt.Println("P1 sum counts: ", answerCountP1)
+	fmt.Println("P2 sum counts: ", answerCountP2)
 }
 
 func main() {
@@ -81,6 +61,5 @@ func main() {
 
 	groupedLines := groupLines(lines)
 
-	countAnswersP1(groupedLines)
-	countAnswersP2(groupedLines)
+	countAnswers(groupedLines)
 }
