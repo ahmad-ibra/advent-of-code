@@ -1,4 +1,4 @@
-package util
+package helpers
 
 // Check function just panics :)
 func Check(e error) {
