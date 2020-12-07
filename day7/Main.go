@@ -9,18 +9,6 @@ import (
 	"github.com/Ahmad-Ibra/advent-of-code-2020/panicer"
 )
 
-func genCount(answers map[string]int, size int) int {
-
-	count := 0
-	for _, value := range answers {
-		if value == size {
-			count++
-		}
-	}
-
-	return count
-}
-
 type bag struct {
 	colour string
 	num    int
