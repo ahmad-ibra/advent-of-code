@@ -1,6 +1,5 @@
-github.com/Ahmad-Ibra/advent-of-code-2020/errorHandler v0.0.0-20201206234352-75a4ea041040 h1:EMB9/8uZjVO7iE3H/TThoBscnaHjy1+72c8Gh0F6kbU=
-github.com/Ahmad-Ibra/advent-of-code-2020/errorHandler v0.0.0-20201206234352-75a4ea041040/go.mod h1:m6lZKLYz3vIFJX1NrWilvxhX/5t0amGUwgsnJwu4oPE=
-github.com/Ahmad-Ibra/advent-of-code-2020/input v0.0.0-20201206234352-75a4ea041040 h1:9SNmN/jYaGi3G2sijVy7nDPK/m05qrH1sy1rMOnFpKU=
-github.com/Ahmad-Ibra/advent-of-code-2020/input v0.0.0-20201206234352-75a4ea041040/go.mod h1:bfyikcQiqXmzNyjdB1jwdFzBR0lKgOPs52AkGApnOhU=
-github.com/Ahmad-Ibra/advent-of-code-2020/panicer v0.0.0-20201206234352-75a4ea041040 h1:4Pcj26jRadS6WiJWqyqehF6bdrj5d9iQm9764GC3SyQ=
+github.com/Ahmad-Ibra/advent-of-code-2020/input v0.0.0-20201207000154-081a8bcc7eaf h1:XEQDft/8er5W/KYFiwqtiK5Vp8AABQJk1i6NYgcNMb0=
+github.com/Ahmad-Ibra/advent-of-code-2020/input v0.0.0-20201207000154-081a8bcc7eaf/go.mod h1:RFBbP+tsPW/ZJ/4ytNB1Ehl5cYWEQDZYVpcSDLH+jw8=
 github.com/Ahmad-Ibra/advent-of-code-2020/panicer v0.0.0-20201206234352-75a4ea041040/go.mod h1:HDk4t11ggG9a2sjVj6TiINUXVMvmhO6vLGjzvgQkN2o=
+github.com/Ahmad-Ibra/advent-of-code-2020/panicer v0.0.0-20201206235045-a4436a501286 h1:6V3I8n5ObIvAV55lOzElCjS87SXdO4C7itTERihXoxA=
+github.com/Ahmad-Ibra/advent-of-code-2020/panicer v0.0.0-20201206235045-a4436a501286/go.mod h1:HDk4t11ggG9a2sjVj6TiINUXVMvmhO6vLGjzvgQkN2o=
