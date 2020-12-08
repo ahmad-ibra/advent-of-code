@@ -8,6 +8,33 @@ import (
 	"github.com/Ahmad-Ibra/advent-of-code-2020/panicer"
 )
 
+// PathToFile generates a path to the given filename
+func PathToFile(fName string) string {
+	dir, err := filepath.Abs(filepath.Dir(os.Args[0]))
+	panicer.Check(err)
+
+	return filepath.Join(dir, fName)
+}
+
+// ByteToStringArray takes a byte array and converts it to a string array
+func ByteToStringArray(contents []byte) []string {
+	var output []string
+
+	lastChar := 0
+	for i := 0; i < len(contents); i++ {
+		curChar := string(contents[i])
+		if curChar == "\n" {
+			line := string(contents[lastChar:i])
+			output = append(output, line)
+			lastChar = i
+		}
+	}
+	//reached EOF, append remaining chars
+	line := string(contents[lastChar:])
+	output = append(output, line)
+	return output
+}
+
 // ReadLines takes a path to a file and returns an array of the lines
 func ReadLines(path string) ([]string, error) {
 	file, err := os.Open(path)
@@ -20,14 +47,6 @@ func ReadLines(path string) ([]string, error) {
 		lines = append(lines, scanner.Text())
 	}
 	return lines, scanner.Err()
-}
-
-// PathToFile generates a path to the given filename
-func PathToFile(fName string) string {
-	dir, err := filepath.Abs(filepath.Dir(os.Args[0]))
-	panicer.Check(err)
-
-	return filepath.Join(dir, fName)
 }
 
 // GroupLines takes the output of readLines and returns an array of grouped lines
