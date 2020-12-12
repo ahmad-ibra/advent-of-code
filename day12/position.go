@@ -15,19 +15,16 @@ const (
 )
 
 type waypoint struct {
-	// directions are relative to the ship
+	// waypoint coordinates are relative to the ship
 	NS int
 	EW int
 }
 
 type position struct {
-	// P1
 	NS  int
 	EW  int
 	dir direction
-
-	// P2
-	WP waypoint
+	WP  waypoint
 }
 
 func (p *position) moveForward(units int) {
@@ -110,7 +107,6 @@ func (p *position) turnRightP2(degrees int) {
 		tempEW := p.WP.EW
 		p.WP.EW = p.WP.NS
 		p.WP.NS = tempEW * -1
-
 	}
 }
 
