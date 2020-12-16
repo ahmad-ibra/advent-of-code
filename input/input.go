@@ -52,12 +52,10 @@ func ReadLines(path string) ([]string, error) {
 // GroupLines takes the output of readLines and returns an array of grouped lines
 // The groups are separated by new lines
 func GroupLines(lines []string) [][]string {
-
 	groupedLines := [][]string{}
 	currentLine := ""
 
 	row := []string{}
-	groupedLines = append(groupedLines, row)
 
 	for _, line := range lines {
 		currentLine = line
@@ -70,8 +68,5 @@ func GroupLines(lines []string) [][]string {
 	}
 
 	// the inputs have tended to not end with an empty line, so we need to handle adding
-	row = append(row, currentLine)
-	groupedLines = append(groupedLines, row)
-
-	return groupedLines
+	return append(groupedLines, row)
 }
