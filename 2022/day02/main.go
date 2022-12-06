@@ -39,7 +39,7 @@ func (r *Round) shapeScore() int {
 		panic(panicMsg)
 	}
 
-	fmt.Println("shapescore is " + strconv.Itoa(score))
+	//fmt.Println("shapescore is " + strconv.Itoa(score))
 	return score
 }
 
@@ -52,12 +52,64 @@ func (r *Round) outcomeScore() int {
 		score += 6
 	}
 
-	fmt.Println("outcomeScore is " + strconv.Itoa(score))
+	//fmt.Println("outcomeScore is " + strconv.Itoa(score))
 	return score
 }
 
 func (r *Round) isTie() bool {
 	return (r.theirHand == "A" && r.myHand == "X") || (r.theirHand == "B" && r.myHand == "Y") || (r.theirHand == "C" && r.myHand == "Z")
+}
+
+func createRound2(hands []string) *Round {
+	r := &Round{
+		theirHand: hands[0],
+	}
+
+	r.myHand = r.makeMyHand(hands[1])
+
+	return r
+}
+
+func (r *Round) makeMyHand(result string) string {
+
+	// A and Win
+	if r.theirHand == "A" && result == "Z" {
+		return "Y"
+	}
+	// A and Tie
+	if r.theirHand == "A" && result == "Y" {
+		return "X"
+	}
+	// A and Lose
+	if r.theirHand == "A" && result == "X" {
+		return "Z"
+	}
+	// B and Win
+	if r.theirHand == "B" && result == "Z" {
+		return "Z"
+	}
+	// B and Tie
+	if r.theirHand == "B" && result == "Y" {
+		return "Y"
+	}
+	// B and Lose
+	if r.theirHand == "B" && result == "X" {
+		return "X"
+	}
+	// C and Win
+	if r.theirHand == "C" && result == "Z" {
+		return "X"
+	}
+	// C and Tie
+	if r.theirHand == "C" && result == "Y" {
+		return "Z"
+	}
+	// C and Lose
+	if r.theirHand == "C" && result == "X" {
+		return "Y"
+	}
+
+	panic("should not have gotten here!")
 }
 
 func main() {
@@ -87,10 +139,24 @@ func main() {
 
 		round := createRound(strings.Fields(r))
 		totalScore += round.shapeScore() + round.outcomeScore()
-		fmt.Println()
+		//fmt.Println()
 	}
 
 	fmt.Println("part1 answer: " + strconv.Itoa(totalScore))
+
+	totalScore = 0
+	for _, r := range rounds {
+		if r == "" {
+			continue
+		}
+		//fmt.Println("round " + strconv.Itoa(i) + ": " + r)
+
+		round2 := createRound2(strings.Fields(r))
+		totalScore += round2.shapeScore() + round2.outcomeScore()
+		//fmt.Println()
+	}
+
+	fmt.Println("part2 answer: " + strconv.Itoa(totalScore))
 }
 
 func inputSplitByLine(fileLoc string) ([]string, error) {
