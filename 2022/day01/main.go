@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"math"
 	"os"
+	"sort"
 	"strconv"
 	"strings"
 )
@@ -37,6 +38,31 @@ func main() {
 	}
 
 	fmt.Println("part1 answer is " + strconv.Itoa(max))
+
+	top3 := make([]int, 3)
+
+	sort.Ints(top3)
+
+	for _, group := range groups {
+		line := strings.Split(group, "\n")
+		count := 0
+		for _, l := range line {
+			if l == "" {
+				continue
+			}
+			iNum, err := strconv.Atoi(l)
+			if err != nil {
+				fmt.Println(err.Error())
+			}
+			count += iNum
+		}
+		if count > top3[0] {
+			top3[0] = count
+			sort.Ints(top3)
+		}
+	}
+
+	fmt.Println("part2 answer is " + strconv.Itoa(top3[0]+top3[1]+top3[2]))
 }
 
 func inputSplitByGroup(fileLoc string) ([]string, error) {
