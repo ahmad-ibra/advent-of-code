@@ -1,4 +1,4 @@
-name: pulumi-test
+name: ci-test
 on:
   workflow_dispatch:
     inputs:
