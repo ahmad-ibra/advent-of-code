@@ -1,0 +1,33 @@
+name: pulumi-test
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        type: choice
+        description: the environment to run this workflow against
+        options:
+          - dev
+          - demo
+          - prod
+        default: dev
+        required: true
+      mode:
+        type: choice
+        description: a choice between previewing or provisioning the ci-global-stack
+        options:
+          - preview
+          - provision
+        default: preview
+        required: true
+
+jobs:
+  run-test:
+    runs-on: gha-fleet-nano
+    steps:
+      - name: Echo inputs
+        run: echo '${{ toJSON(inputs) }}'
+
+      - name: Git Checkout
+        uses: actions/checkout@v3
+        with:
+          ref: master
