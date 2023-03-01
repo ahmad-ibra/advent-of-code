@@ -22,7 +22,7 @@ on:
 
 jobs:
   run-test:
-    runs-on: gha-fleet-nano
+    runs-on: ubuntu-latest
     steps:
       - name: Echo inputs
         run: echo '${{ toJSON(inputs) }}'
