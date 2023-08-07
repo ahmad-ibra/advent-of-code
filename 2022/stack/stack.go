@@ -4,44 +4,45 @@ import (
 	"fmt"
 )
 
+// TODO: make stack generic
+
 type Stack struct {
-	crates []string
+	st []string
 }
 
 func NewStack() *Stack {
-	return &Stack{crates: make([]string, 0)}
+	return &Stack{st: make([]string, 0)}
 }
 
 func (s *Stack) Print() {
-	fmt.Printf("Stack size is %v\n", len(s.crates))
-	fmt.Println(s.crates)
+	fmt.Printf("Stack size is %v\n", len(s.st))
+	fmt.Println(s.st)
 }
 
 func (s *Stack) Push(str string) {
-	s.crates = append(s.crates, str)
+	s.st = append(s.st, str)
 }
 
 func (s *Stack) Pop() string {
-	length := len(s.crates)
+	length := len(s.st)
 	if length > 0 {
-		str := s.crates[length-1]
-
-		s.crates = s.crates[:length-1]
+		str := s.st[length-1]
+		s.st = s.st[:length-1]
 		return str
 	}
 	return ""
 }
 
 func (s *Stack) Peek() string {
-	length := len(s.crates)
+	length := len(s.st)
 	if length > 0 {
-		return s.crates[length-1]
+		return s.st[length-1]
 	}
 	return ""
 }
 
 func (s *Stack) Reverse() {
-	st := s.crates
+	st := s.st
 	start := 0
 	end := len(st) - 1
 
@@ -52,4 +53,25 @@ func (s *Stack) Reverse() {
 		start++
 		end--
 	}
+}
+
+// TODO: make this an actual test that lives in the stack package
+func testStack() {
+	s := NewStack()
+	s.Print()
+	s.Push("H")
+	s.Print()
+	fmt.Printf("value of peek is %v\n", s.Peek())
+	s.Print()
+	b := s.Pop()
+	fmt.Printf("popped item is %v\n", b)
+	s.Print()
+	s.Push("a")
+	s.Push("b")
+	s.Push("c")
+	s.Push("d")
+	s.Push("e")
+	s.Print()
+	s.Reverse()
+	s.Print()
 }
