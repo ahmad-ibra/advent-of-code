@@ -1,11 +1,11 @@
-import * as fs from 'fs'
-import * as readline from 'readline'
+import { createReadStream } from 'fs'
+import { createInterface } from 'readline'
 
 export async function getLinesFromFile(filePath: string): Promise<string[]> {
     const lines: string[] = [];
 
-    const readStream = fs.createReadStream(filePath);
-    const rl = readline.createInterface({
+    const readStream = createReadStream(filePath);
+    const rl = createInterface({
         input: readStream,
     });
 
