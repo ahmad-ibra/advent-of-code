@@ -1,6 +1,3 @@
-import fs from 'fs'
+import day01 from './day01/day01.js'
 
-import { hey } from './day01/day01.js'
-
-console.log(hey)
-
+day01()

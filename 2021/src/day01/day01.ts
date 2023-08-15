@@ -1,1 +1,7 @@
-export const hey = "hi mom!"
+import fs from 'fs'
+
+export default function day01(): void {
+
+    console.log("day01")
+
+}
