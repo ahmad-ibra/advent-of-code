@@ -50,7 +50,6 @@ func useAllAdapters(jolts []int) {
 	fmt.Println("sum1Jolt: ", sum1Jolt, ", sum2Jolt: ", sum2Jolt, ", sum3Jolt: ", sum3Jolt)
 
 	fmt.Println("P1: ", sum1Jolt*sum3Jolt)
-
 }
 
 // use dynamic programming algorithm
