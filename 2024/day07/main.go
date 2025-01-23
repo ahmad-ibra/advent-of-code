@@ -137,6 +137,8 @@ func main() {
 	for _, equation := range equations {
 		if equation.isSolvablePlusTimes() {
 			ansP1 += equation.answer
+			ansP2 += equation.answer
+			continue
 		}
 		if equation.isSolvablePlusTimesConcat() {
 			ansP2 += equation.answer
